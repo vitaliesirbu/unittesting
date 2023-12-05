@@ -1,7 +1,7 @@
 package testng;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import shop.RealItem;
 
 public class RealItemTest {
@@ -13,17 +13,19 @@ public class RealItemTest {
         car.setPrice(32026.9);
         car.setWeight(1560);
 
-        // Assert that the name has been set correctly
-        Assert.assertEquals(car.getName(), "Audi", "The name of the item is not set correctly.");
+        // Initialize the SoftAssert object
+        SoftAssert softAssert = new SoftAssert();
 
-        // Assert that the price has been set correctly
-        Assert.assertEquals(car.getPrice(), 32026.9, "The price of the item is not set correctly.");
+        // Use soft assertions instead of hard assertions
+        softAssert.assertEquals(car.getName(), "Audi", "The name of the item is not set correctly.");
+        softAssert.assertEquals(car.getPrice(), 32026.9, "The price of the item is not set correctly.");
+        softAssert.assertEquals(car.getWeight(), 1560.0, "The weight of the item is not set correctly.");
 
-        // Assert that the weight has been set correctly
-        Assert.assertEquals(car.getWeight(), 1560.0, "The weight of the item is not set correctly.");
-
-        // Assert that the toString method returns the correct string representation
+        // Soft assertion for the toString method
         String expectedToString = "Class: class shop.RealItem; Name: Audi; Price: 32026.9; Weight: 1560.0";
-        Assert.assertEquals(car.toString(), expectedToString, "The toString method does not return the expected output.");
+        softAssert.assertEquals(car.toString(), expectedToString, "The toString method does not return the expected output.");
+
+        // This will check all soft assertions made during the test
+        softAssert.assertAll();
     }
 }

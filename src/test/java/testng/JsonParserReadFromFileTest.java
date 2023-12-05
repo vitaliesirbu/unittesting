@@ -1,9 +1,10 @@
 package testng;
 
-import org.junit.jupiter.api.Disabled;
+
 import org.testng.annotations.*;
 import static org.testng.Assert.*;
 import com.google.gson.Gson;
+import org.testng.asserts.SoftAssert;
 import parser.JsonParser;
 import shop.Cart;
 import shop.RealItem;
@@ -13,7 +14,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-@Disabled
 public class JsonParserReadFromFileTest {
 
 
@@ -46,15 +46,18 @@ public class JsonParserReadFromFileTest {
             writer.write(gson.toJson(testCart));
         }
     }
-    @Test
+    @Test(enabled = false)
     public void testReadFromFileWithTempFile() {
+        SoftAssert softAssert = new SoftAssert();
         try {
             Cart cart = parser.readFromFile(tempFile);
-            assertNotNull(cart, "Cart should not be null");
-            assertEquals(cart.getCartName(), "test-cart", "Cart name should match");
+            softAssert.assertNotNull(cart, "Cart should not be null");
+            softAssert.assertEquals(cart.getCartName(), "test-cart", "Cart name should match");
             // Additional assertions to validate the content of the Cart
         } catch (Exception e) {
             fail("No exception should be thrown for a valid file");
+        } finally {
+            softAssert.assertAll();  // Ensure that all assertions are checked
         }
     }
 

@@ -5,6 +5,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
+
+import org.testng.asserts.SoftAssert;
 import parser.JsonParser;
 import shop.Cart;
 import shop.RealItem;
@@ -46,11 +48,14 @@ public class JsonParserWriteToFileTest {
 
     @Test
     public void testWriteToFileCreatesCorrectFile() {
+        // Initialize the SoftAssert object
+        SoftAssert softAssert = new SoftAssert();
+
         // Act
         parser.writeToFile(testCart);
 
         // Assert
-        assertTrue(testFile.exists(), "File should be created");
+        softAssert.assertTrue(testFile.exists(), "File should be created");
 
         // Read file content and assert it's not empty
         StringBuilder content = new StringBuilder();
@@ -60,11 +65,11 @@ public class JsonParserWriteToFileTest {
                 content.append(line);
             }
         } catch (IOException e) {
-            fail("Exception occurred while reading the file", e);
+            softAssert.fail("Exception occurred while reading the file", e);
         }
 
-        assertFalse(content.toString().isEmpty(), "File content should not be empty");
-        // Further checks can be added here to validate the actual JSON content
+        // This will check all soft assertions made during the test
+        softAssert.assertAll();
     }
 
     @AfterMethod

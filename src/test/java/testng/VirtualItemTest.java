@@ -1,7 +1,7 @@
 package testng;
 
 import org.testng.annotations.Test;
-import static org.testng.Assert.assertEquals;
+import org.testng.asserts.SoftAssert;
 import shop.VirtualItem;
 
 public class VirtualItemTest {
@@ -19,7 +19,11 @@ public class VirtualItemTest {
         // Act
         String actualOutput = virtualItem.toString();
 
-        // Assert
-        assertEquals(actualOutput, expectedOutput, "VirtualItem toString should return the correct string format.");
+        // Assert with SoftAssert
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(actualOutput, expectedOutput, "VirtualItem toString should return the correct string format.");
+
+        // This will check all soft assertions made during the test
+        softAssert.assertAll();
     }
 }

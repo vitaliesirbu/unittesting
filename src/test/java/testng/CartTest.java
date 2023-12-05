@@ -42,6 +42,4 @@ public class CartTest {
         // Assert all to consolidate the results of the grouped assertions
         softAssert.assertAll();
     }
-
-    // The rest of the class remains unchanged...
 }
