@@ -1,3 +1,5 @@
+package junit;
+
 import org.junit.jupiter.api.*;
 import shop.VirtualItem;
 import static org.junit.jupiter.api.Assertions.*;

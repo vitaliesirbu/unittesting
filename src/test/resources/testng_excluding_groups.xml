@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Excluding Groups Suite">
+    <test name="Non-Regression Tests">
+        <groups>
+            <run>
+                <exclude name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="TestNG.CartTest"/>
+        </classes>
+    </test>
+</suite>
