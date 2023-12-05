@@ -12,11 +12,11 @@ public class JsonParserExceptionTest {
     @DataProvider(name = "fileExceptionDataProvider")
     public Object[][] createFileExceptionTestData() {
         return new Object[][] {
-                {"nonexistent.json"}, // Non-existent file
-                {"invalid/directory/path"}, // File path pointing to a directory
-                {"invalidJsonFormat.json"}, // File with invalid JSON format
-                {"emptyFile.json"}, // Empty file
-                {"noReadPermission.json"} // File exists but no read permission
+                {"nonexistent.json"},
+                {"invalid/directory/path"},
+                {"invalidJsonFormat.json"},
+                {"emptyFile.json"},
+                {"noReadPermission.json"}
         };
     }
 

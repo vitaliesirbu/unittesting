@@ -19,8 +19,6 @@ public class CartTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        // Optionally, you can assert all in tearDown to ensure assertions are checked
-        // even if there's an exception in the test method before reaching softAssert.assertAll()
         softAssert.assertAll();
     }
 
@@ -33,13 +31,11 @@ public class CartTest {
 
         testCart.addRealItem(car);
 
-        // Grouped assertion using a SoftAssert instance
         softAssert.assertEquals(car.getName(), "Audi", "Car name should match");
         softAssert.assertEquals(car.getPrice(), 32026.9, "Car price should match");
         softAssert.assertEquals(car.getWeight(), 1560.0, "Car weight should match");
         softAssert.assertEquals(testCart.getTotalPrice(), 32026.9 * 1.2, "Total price should include tax");
 
-        // Assert all to consolidate the results of the grouped assertions
         softAssert.assertAll();
     }
 }

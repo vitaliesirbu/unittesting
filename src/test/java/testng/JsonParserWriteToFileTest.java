@@ -4,7 +4,6 @@ package testng;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static org.testng.Assert.*;
 
 import org.testng.asserts.SoftAssert;
 import parser.JsonParser;
@@ -25,7 +24,6 @@ public class JsonParserWriteToFileTest {
 
     @BeforeMethod
     public void setUp() {
-        // Setup test data
         testCart = new Cart("test-cart");
         RealItem car = new RealItem();
         car.setName("Audi");
@@ -39,25 +37,19 @@ public class JsonParserWriteToFileTest {
         disk.setSizeOnDisk(20000);
         testCart.addVirtualItem(disk);
 
-        // Initialize JsonParser
         parser = new JsonParser();
 
-        // Define the file path for testing
         testFile = new File("src/main/resources/test-cart.json");
     }
 
     @Test
     public void testWriteToFileCreatesCorrectFile() {
-        // Initialize the SoftAssert object
         SoftAssert softAssert = new SoftAssert();
 
-        // Act
         parser.writeToFile(testCart);
 
-        // Assert
         softAssert.assertTrue(testFile.exists(), "File should be created");
 
-        // Read file content and assert it's not empty
         StringBuilder content = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(testFile))) {
             String line;
@@ -68,13 +60,11 @@ public class JsonParserWriteToFileTest {
             softAssert.fail("Exception occurred while reading the file", e);
         }
 
-        // This will check all soft assertions made during the test
         softAssert.assertAll();
     }
 
     @AfterMethod
     public void tearDown() {
-        // Clean up after test
         if (testFile.exists()) {
             testFile.delete();
         }
