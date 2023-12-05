@@ -1,4 +1,4 @@
-package JUnit;
+package junit;
 
 import org.junit.jupiter.api.*;
 import shop.VirtualItem;

@@ -1,4 +1,4 @@
-package TestNG;
+package testng;
 
 import org.junit.jupiter.api.Disabled;
 import org.testng.annotations.*;

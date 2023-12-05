@@ -1,11 +1,10 @@
-package JUnit;
+package junit;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import parser.JsonParser;
 import parser.NoSuchFileException;
-import shop.Cart;
 
 import java.io.File;
 import java.util.stream.Stream;
